@@ -15,7 +15,9 @@ public class FoodOrderConsumerApplication {
 	}
 
 	@StreamListener(target = Sink.INPUT)
-	public void processCheapMeals(String meal){
-		System.out.println("This was a great meal!: "+meal);
+	public void processCheapMeals(String meal) throws Exception {
+		if(meal.contains("vegetables"))
+			throw new Exception("Vegetables! Move to dead letter queue!");
+		System.out.println("Meal consumed: "+meal);
 	}
 }
