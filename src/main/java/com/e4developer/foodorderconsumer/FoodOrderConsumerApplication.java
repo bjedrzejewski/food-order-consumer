@@ -18,6 +18,8 @@ public class FoodOrderConsumerApplication {
 	public void processCheapMeals(String meal) throws Exception {
 		if(meal.contains("vegetables"))
 			throw new Exception("Vegetables! Move to dead letter queue!");
+		if(meal.contains("poison"))
+			throw new Exception("Poison! Move to dead letter queue!");
 		System.out.println("Meal consumed: "+meal);
 	}
 }
